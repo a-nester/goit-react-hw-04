@@ -2,6 +2,7 @@ import { ImageCard } from "../ImageCard/ImageCard";
 import { nanoid } from "nanoid";
 
 export const ImageGallery = ({ images }) => {
+  console.log(images);
   return (
     <ul>
       {images.map((image) => {
