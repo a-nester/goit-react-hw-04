@@ -1,9 +1,12 @@
-export const ImageCard = ({ image }) => {
+export const ImageCard = ({ image, onClick }) => {
+  const handleClick = () => {
+    onClick(regular);
+  };
   console.log(image);
-  const { small, alt_description } = image.urls;
+  const { small, regular, alt_description } = image.urls;
   return (
     <>
-      <img src={small} alt={alt_description} />
+      <img src={small} alt={alt_description} onClick={handleClick} />
     </>
   );
 };

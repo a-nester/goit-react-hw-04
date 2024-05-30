@@ -1,7 +1,7 @@
 import { ImageCard } from "../ImageCard/ImageCard";
 import { nanoid } from "nanoid";
 
-export const ImageGallery = ({ images }) => {
+export const ImageGallery = ({ images, onClick }) => {
   console.log(images);
   return (
     <ul>
@@ -10,7 +10,7 @@ export const ImageGallery = ({ images }) => {
         return (
           <>
             <li key={id}>
-              <ImageCard image={image} />
+              <ImageCard image={image} onClick={onClick} />
             </li>
           </>
         );
