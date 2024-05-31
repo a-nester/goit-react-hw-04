@@ -8,6 +8,7 @@ import { ImageGallery } from "./components/ImageGallery/ImageGallery";
 import { SearchBar } from "./components/SearchBar/SearchBar";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
+import { ImageModal } from "./components/ImageModal/ImageModal";
 
 const customStyles = {
   content: {
@@ -29,15 +30,21 @@ function App() {
   const [page, setPage] = useState(1);
   const [topic, setTopic] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [modalImage, setModalImage] = useState("");
-
+  const [modalData, setModalData] = useState("");
+  // const [total, setTotal] = useState({ pages: 0 });
   useEffect(() => {
     const handleFetch = async () => {
       try {
         setError(false);
         setLoader(true);
         const data = await createFetch(topic, page);
-        setImages((prev) => [...prev, ...data]);
+        setImages((prev) => [...prev, ...data.results]);
+        // setTotal(() => {
+        //   {
+        //     pages: data.total;
+        //   }
+        // });
+        // console.log(total);
       } catch (error) {
         setError(true);
       } finally {
@@ -57,7 +64,7 @@ function App() {
 
   const openModal = (regular) => {
     setIsOpen(true);
-    setModalImage(regular);
+    setModalData(regular);
   };
 
   const afterOpenModal = () => {};
@@ -77,9 +84,7 @@ function App() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <div>
-          <img src={modalImage} />
-        </div>
+        <ImageModal modalData={modalData} />
       </Modal>
       {images.length > 0 && (
         <ImageGallery images={images} onClick={openModal} />

@@ -1,12 +1,18 @@
+import css from "./ImageCard.module.css";
+
 export const ImageCard = ({ image, onClick }) => {
   const handleClick = () => {
-    onClick(regular);
+    onClick(image);
   };
-  console.log(image);
-  const { small, regular, alt_description } = image.urls;
+  const { small, alt_description } = image.urls;
   return (
     <>
-      <img src={small} alt={alt_description} onClick={handleClick} />
+      <img
+        className={css.imageListItem}
+        src={small}
+        alt={alt_description}
+        onClick={handleClick}
+      />
     </>
   );
 };

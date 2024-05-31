@@ -1,3 +1,6 @@
+import css from "./SearchBar.module.css";
+import { FcSearch } from "react-icons/fc";
+
 export const SearchBar = ({ onSearch }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -7,7 +10,7 @@ export const SearchBar = ({ onSearch }) => {
   };
   return (
     <header>
-      <form onSubmit={handleSubmit}>
+      <form className={css.searchForm} onSubmit={handleSubmit}>
         <input
           name="input"
           type="text"
@@ -15,7 +18,9 @@ export const SearchBar = ({ onSearch }) => {
           autoFocus
           placeholder="Search images and photos"
         />
-        <button></button>
+        <button className={css.searchBtn}>
+          <FcSearch className="svgSearchBtn" size="30" />
+        </button>
       </form>
     </header>
   );
