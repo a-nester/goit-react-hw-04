@@ -8,7 +8,7 @@ export const ImageGallery = ({ images, onClick }) => {
       {images.map((image) => {
         const id = nanoid();
         return (
-          <li key={id}>
+          <li key={id} className={css.imageListItem}>
             <ImageCard image={image} onClick={onClick} />
           </li>
         );

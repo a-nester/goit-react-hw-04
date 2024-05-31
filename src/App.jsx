@@ -6,8 +6,8 @@ import Modal from "react-modal";
 import { createFetch } from "./api-fetch";
 import { ImageGallery } from "./components/ImageGallery/ImageGallery";
 import { SearchBar } from "./components/SearchBar/SearchBar";
-import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
-import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
+import { ErrorMessage } from "./components/ErrorMessage/ErrorMessage";
+import { LoadMoreBtn } from "./components/LoadMoreBtn/LoadMoreBtn";
 import { ImageModal } from "./components/ImageModal/ImageModal";
 
 const customStyles = {
@@ -52,7 +52,6 @@ function App() {
     topic && handleFetch();
   }, [topic, page]);
 
-  console.log(total);
   const handleSearch = (newTopic) => {
     newTopic !== topic && setImages([]);
     setTopic(newTopic);
@@ -67,7 +66,7 @@ function App() {
     setModalData(regular);
   };
 
-  const afterOpenModal = () => {};
+  // const afterOpenModal = () => {};
 
   const closeModal = () => {
     setIsOpen(false);
@@ -79,7 +78,7 @@ function App() {
       <Modal
         id="modal"
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
+        // onAfterOpen={}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
@@ -99,7 +98,7 @@ function App() {
           color="#4fa94d"
           radius="9"
           ariaLabel="three-dots-loading"
-          wrapperStyle={{}}
+          wrapperStyle={{ "justify-content": "center" }}
           wrapperClass=""
         />
       )}

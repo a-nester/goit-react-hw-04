@@ -5,3 +5,8 @@
   gap: 8px;
   flex-wrap: wrap;
 }
+
+.imageListItem {
+  width: 360px;
+  height: 260px;
+}
