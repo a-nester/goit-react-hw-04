@@ -1,3 +1,5 @@
+import "./ImageModal.css";
+
 export const ImageModal = ({ modalData }) => {
   const { urls, description, likes, user } = modalData;
   return (
@@ -7,7 +9,7 @@ export const ImageModal = ({ modalData }) => {
         Author: {user.first_name} {user.last_name}
       </p>
       <p>Likes: {likes}</p>
-      <p>Quote: {description}</p>
+      <p className="quote">Quote: {description}</p>
       {console.log()}
     </div>
   );

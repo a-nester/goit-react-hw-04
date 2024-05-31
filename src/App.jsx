@@ -19,6 +19,9 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
   },
+  quote: {
+    height: "200px",
+  },
 };
 
 Modal.setAppElement("#root");
@@ -31,7 +34,7 @@ function App() {
   const [topic, setTopic] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalData, setModalData] = useState("");
-  // const [total, setTotal] = useState({ pages: 0 });
+  const [total, setTotal] = useState([]);
   useEffect(() => {
     const handleFetch = async () => {
       try {
@@ -39,12 +42,7 @@ function App() {
         setLoader(true);
         const data = await createFetch(topic, page);
         setImages((prev) => [...prev, ...data.results]);
-        // setTotal(() => {
-        //   {
-        //     pages: data.total;
-        //   }
-        // });
-        // console.log(total);
+        setTotal(data.total);
       } catch (error) {
         setError(true);
       } finally {
@@ -54,7 +52,9 @@ function App() {
     topic && handleFetch();
   }, [topic, page]);
 
-  const handleSearch = async (newTopic) => {
+  console.log(total);
+  const handleSearch = (newTopic) => {
+    newTopic !== topic && setImages([]);
     setTopic(newTopic);
   };
 
@@ -103,7 +103,7 @@ function App() {
           wrapperClass=""
         />
       )}
-      {images.length > 0 && (
+      {images.length > 0 && images.length < total && (
         <LoadMoreBtn onClick={handleLoadMore}>Load more</LoadMoreBtn>
       )}
     </>
