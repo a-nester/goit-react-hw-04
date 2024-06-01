@@ -1,7 +1,7 @@
 import "./App.css";
 import { ThreeDots } from "react-loader-spinner";
 import { useEffect, useState } from "react";
-import Modal from "react-modal";
+// import Modal from "react-modal";
 
 import { createFetch } from "./api-fetch";
 import { ImageGallery } from "./components/ImageGallery/ImageGallery";
@@ -9,10 +9,10 @@ import { SearchBar } from "./components/SearchBar/SearchBar";
 import { ErrorMessage } from "./components/ErrorMessage/ErrorMessage";
 import { LoadMoreBtn } from "./components/LoadMoreBtn/LoadMoreBtn";
 import { ImageModal } from "./components/ImageModal/ImageModal";
-import { customStyles } from "./helpers";
+// import { customStyles } from "./helpers";
 import { threeDotsStyles } from "./helpers";
 
-Modal.setAppElement("#root");
+// Modal.setAppElement("#root");
 
 function App() {
   const [images, setImages] = useState([]);
@@ -61,19 +61,20 @@ function App() {
   return (
     <>
       <SearchBar onSearch={handleSearch} />
-      <Modal
-        id="modal"
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <ImageModal modalData={modalData} />
-      </Modal>
       {images.length > 0 && (
-        <ImageGallery images={images} onClick={openModal} />
+        <ImageGallery
+          images={images}
+          modalData={modalData}
+          onClick={openModal}
+        />
       )}
-
+      {modalIsOpen && (
+        <ImageModal
+          modalData={modalData}
+          modalIsOpen={modalIsOpen}
+          closeModal={closeModal}
+        />
+      )}
       {error && <ErrorMessage />}
       {loader && (
         <ThreeDots
