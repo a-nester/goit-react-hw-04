@@ -9,8 +9,7 @@ export const ImageModal = ({ modalData }) => {
         Author: {user.first_name} {user.last_name}
       </p>
       <p>Likes: {likes}</p>
-      <p className="quote">Quote: {description}</p>
-      {console.log()}
+      <p className="quote">Description: {description}</p>
     </div>
   );
 };

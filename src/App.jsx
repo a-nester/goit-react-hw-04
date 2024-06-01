@@ -9,20 +9,8 @@ import { SearchBar } from "./components/SearchBar/SearchBar";
 import { ErrorMessage } from "./components/ErrorMessage/ErrorMessage";
 import { LoadMoreBtn } from "./components/LoadMoreBtn/LoadMoreBtn";
 import { ImageModal } from "./components/ImageModal/ImageModal";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-  quote: {
-    height: "200px",
-  },
-};
+import { customStyles } from "./helpers";
+import { threeDotsStyles } from "./helpers";
 
 Modal.setAppElement("#root");
 
@@ -66,8 +54,6 @@ function App() {
     setModalData(regular);
   };
 
-  // const afterOpenModal = () => {};
-
   const closeModal = () => {
     setIsOpen(false);
   };
@@ -78,7 +64,6 @@ function App() {
       <Modal
         id="modal"
         isOpen={modalIsOpen}
-        // onAfterOpen={}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
@@ -92,14 +77,8 @@ function App() {
       {error && <ErrorMessage />}
       {loader && (
         <ThreeDots
-          visible={true}
-          height="80"
-          width="80"
-          color="#4fa94d"
-          radius="9"
-          ariaLabel="three-dots-loading"
-          wrapperStyle={{ "justify-content": "center" }}
-          wrapperClass=""
+          styles={threeDotsStyles}
+          wrapperStyle={{ justifyContent: "center" }}
         />
       )}
       {images.length > 0 && images.length < total && (
