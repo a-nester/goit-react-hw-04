@@ -1,6 +1,9 @@
 import * as Yup from "yup";
 
 export const customStyles = {
+  overlay: {
+    backgroundColor: "gray",
+  },
   content: {
     top: "50%",
     left: "50%",
@@ -8,6 +11,7 @@ export const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    // backgroundColor: "black",
   },
   quote: {
     height: "200px",
